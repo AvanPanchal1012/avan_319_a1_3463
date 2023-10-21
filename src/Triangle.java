@@ -31,7 +31,22 @@ public class Triangle {
 
     }
 
-    public boolean isPointInside(Point p) {
-        return false;
+    public boolean isPointInside(Point pt) {
+        double areaABC = calculateArea(a, b, c);
+        double areaPBC = calculateArea(pt, b, c);
+        double areaPCA = calculateArea(a, pt, c);
+        double areaPAB = calculateArea(a, b, pt);
+
+        if(areaPBC + areaPCA + areaPAB == areaABC) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public double calculateArea(Point p1,Point p2,Point p3){
+        return 0.5 * Math.abs((p1.getX() * (p2.getY() - p3.getY()) +
+                p2.getX() * (p3.getY() - p1.getY()) +
+                p3.getX() * (p1.getY() - p2.getY())));
     }
 }
